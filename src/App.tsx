@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import {Header} from "./components/header";
+import {ProductPage} from "./pages/product";
+import {useDispatch} from "react-redux";
+import {actions} from "./store/products-reducer";
+import {getAll} from "./services/firebase-services";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const products = getAll();
+        dispatch(actions.setAllProducts(products))
+    }, [])
+
+
+    return (
+        <div className="wrapper">
+            <Header/>
+            <div className="content">
+                <ProductPage/>
+            </div>
+        </div>
+    );
 }
 
 export default App;
