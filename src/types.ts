@@ -6,3 +6,12 @@ export type ProductItemType = {
     price: number
     rating: number
 }
+
+export type ItemCartType = {
+    items: ProductItemType[]
+    totalPrice: number
+}
+
+export type ItemsCartType = {
+    id: number
+}

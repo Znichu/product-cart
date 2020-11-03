@@ -27,12 +27,11 @@ body {
   }
 }
 .content {
-  background-color: #333;
   width: 90%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 40px 0;
+  margin: 40px;
 }
 .products-container {
   display: grid;

@@ -1,4 +1,5 @@
 import React from "react";
+import {convertMoney} from "../helpers/format-money";
 
 type PropsType = {
     title: string
@@ -16,7 +17,7 @@ export const Card: React.FC<PropsType> = ({title, imgUrl, prise}) => {
                 <img src={imgUrl} alt={title}/>
             </figure>
             <div className="cta">
-                <div className="price">{prise}</div>
+                <div className="price">{convertMoney(prise)}</div>
                 <button className="btn">Add to cart</button>
             </div>
         </div>

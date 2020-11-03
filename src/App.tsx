@@ -3,7 +3,6 @@ import {Header} from "./components/header";
 import {ProductPage} from "./pages/product";
 import {useDispatch} from "react-redux";
 import {actions} from "./store/products-reducer";
-import {getAll} from "./services/firebase-services";
 import {ProductItemType} from "./types";
 import firebase from "./firebase";
 
