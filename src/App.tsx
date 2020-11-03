@@ -4,14 +4,21 @@ import {ProductPage} from "./pages/product";
 import {useDispatch} from "react-redux";
 import {actions} from "./store/products-reducer";
 import {getAll} from "./services/firebase-services";
+import {ProductItemType} from "./types";
+import firebase from "./firebase";
 
 
 function App() {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        const products = getAll();
-        dispatch(actions.setAllProducts(products))
+        let allPizzas = [] as ProductItemType[];
+        firebase.ref("/pizzas").on("value", snapshot => {
+            snapshot.forEach(snap => {
+                allPizzas.push(snap.val());
+            });
+            dispatch(actions.setAllProducts(allPizzas))
+        });
     }, [])
 
 

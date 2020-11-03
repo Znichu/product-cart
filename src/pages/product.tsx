@@ -1,14 +1,18 @@
 import React from "react";
-import {ProductItem} from "../components/product-item";
+import {Card} from "../components/card";
+import {useSelector} from "react-redux";
+import {RootState} from "../store/store";
 
 
 export const ProductPage = () => {
+
+    const products = useSelector((state: RootState) => state.products.pizzas)
+
+    const cards = products.map(p => <Card key={p.id} title={p.name} imgUrl={p.imageUrl} prise={p.price}/> )
+
     return (
         <div className="products-container">
-            <ProductItem/>
-            <ProductItem/>
-            <ProductItem/>
-            <ProductItem/>
+            {cards}
         </div>
     )
 }

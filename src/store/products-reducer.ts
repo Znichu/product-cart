@@ -3,7 +3,7 @@ import {ThunkAction} from "redux-thunk";
 import {ProductItemType} from "../types";
 
 let initialState = {
-    products: [] as ProductItemType[]
+    pizzas: [] as ProductItemType[]
 };
 
 //Reducer
@@ -12,7 +12,7 @@ export const ProductsReducer = (state = initialState, action: ActionsTypes): Ini
         case "SET_ALL_PRODUCTS": {
             return {
                 ...state,
-                products: action.products
+                pizzas: action.pizzas
             }
         }
         default:
@@ -22,7 +22,7 @@ export const ProductsReducer = (state = initialState, action: ActionsTypes): Ini
 
 //Actions
 export const actions = {
-    setAllProducts: (products: ProductItemType[]) => ({ type: "SET_ALL_PRODUCTS", products } as const),
+    setAllProducts: (pizzas: ProductItemType[]) => ({ type: "SET_ALL_PRODUCTS", pizzas } as const),
 };
 
 //Thunk
