@@ -8,7 +8,7 @@ export const ProductPage = () => {
 
     const products = useSelector((state: RootState) => state.products.pizzas)
 
-    const cards = products.map(p => <Card key={p.id} title={p.name} imgUrl={p.imageUrl} prise={p.price}/> )
+    const cards = products.map(p => <Card key={p.id} id={p.id} title={p.name} imgUrl={p.imageUrl} price={p.price}/> )
 
     return (
         <div className="products-container">

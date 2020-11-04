@@ -7,11 +7,13 @@ export type ProductItemType = {
     rating: number
 }
 
-export type ItemCartType = {
-    items: ProductItemType[]
-    totalPrice: number
+export type CartProductType = {
+    id: number
+    name: string
+    price: number
 }
 
-export type ItemsCartType = {
-    id: number
+export type ItemCartType = {
+    item: CartProductType
+    quantity: number
 }
