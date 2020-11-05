@@ -45,6 +45,7 @@
   }
 
   .btn {
+    font-family: 'Comfortaa', cursive;
     font-size: 14px;
     font-weight: 700;
     color: #FF3100;
@@ -52,15 +53,14 @@
     cursor: pointer;
     transition: all .3s ease-in-out;
     line-height: .95;
-    border: none;
     background: none;
     outline: none;
-    border: 1px solid #FF3100;
+    border: 1px solid #F24701;
     border-radius: 20px;
 
     &:hover {
       color: #ffffff;
-      background: linear-gradient(135deg, #a61322, #d33f34);
+      background: #F24701;
     }
   }
 }

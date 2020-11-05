@@ -1,17 +1,34 @@
-import React, {useState} from "react";
+import React from "react";
 import cartEmptyImage from "../assets/img/empty-cart.png"
 import {RootState} from "../store/store";
 import { Link } from 'react-router-dom';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {CartItem} from "../components/cart-item";
+import {convertMoney} from "../helpers/format-money";
+import {actions} from "../store/cart-reducer";
 
 
 export const Cart = () => {
 
-    const totalCount = useSelector((state: RootState) => state.cart.itemCount)
+    const dispatch = useDispatch();
+    const {itemCount, items, totalPrise} = useSelector((state: RootState) => state.cart);
+
+    const plusCartItem = (id: number) => {
+        dispatch(actions.plusCartItem(id))
+    }
+    const minusCartItem = (id: number) => {
+        dispatch(actions.minusCartItem(id))
+    }
+    const removeCartItem = (id: number) => {
+        dispatch(actions.removeCartItem(id))
+    }
+    const clearCart = () => {
+        dispatch(actions.clearCart())
+    }
 
     return (
         <div className="container container--cart">
-            {totalCount ? (
+            {itemCount ? (
                 <div className="cart">
                     <div className="cart__top">
                         <h2 className="content__title">
@@ -45,7 +62,7 @@ export const Cart = () => {
                             </svg>
                             Корзина
                         </h2>
-                        <div className="cart__clear">
+                        <div onClick={clearCart} className="cart__clear">
                             <svg
                                 width="20"
                                 height="20"
@@ -86,15 +103,25 @@ export const Cart = () => {
                         </div>
                     </div>
                     <div className="content__items">
-
+                        {
+                            items.map(i => <CartItem id={i.item.id}
+                                                     name={i.item.name}
+                                                     totalCount={i.quantity}
+                                                     imgUrl={i.item.imgUrl}
+                                                     key={i.item.id}
+                                                     minusCartItem={minusCartItem}
+                                                     plusCartItem={plusCartItem}
+                                                     removeCartItem={removeCartItem}
+                            />)
+                        }
                     </div>
                     <div className="cart__bottom">
                         <div className="cart__bottom-details">
               <span>
-                Всего пицц: <b> шт.</b>
+                Всего пицц: <b>{itemCount} шт.</b>
               </span>
                             <span>
-                Сумма заказа: <b> ₽</b>
+                Сумма заказа: <b>{convertMoney(totalPrise)}</b>
               </span>
                         </div>
                         <div className="cart__bottom-buttons">

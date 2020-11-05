@@ -12,6 +12,9 @@ body {
     padding: 20px 0;
   }
 }
+a {
+  text-decoration: none;
+}
 
 .wrapper {
   display: flex;
@@ -256,6 +259,7 @@ body {
       align-items: center;
       justify-content: flex-end;
       width: 4%;
+      margin-left: auto;
 
       @media (max-width: 768px) {
         position: absolute;
@@ -404,6 +408,28 @@ body {
       margin: 0 auto;
       font-weight: 600;
       font-size: 18px;
+    }
+  }
+}
+
+.container {
+  width: $container-width;
+  margin: 0 auto;
+
+  &--cart {
+    max-width: 820px;
+    margin: 30px auto;
+    .content__title {
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .content__items {
+      grid-template-columns: 1fr;
     }
   }
 }
