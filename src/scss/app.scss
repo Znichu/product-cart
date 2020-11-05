@@ -34,7 +34,8 @@ a {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 45px 15px;
+  padding: 45px 0;
+  width: 100%;
 }
 .products-container {
   display: grid;
