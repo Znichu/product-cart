@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {RootState} from "../store/store";
 import {convertMoney} from "../helpers/format-money";
+import logo from "../assets/img/logo.jpg"
 
 
 export const Header = () => {
@@ -11,8 +12,8 @@ export const Header = () => {
 
     return (
         <div className="header-container">
-            <div>
-                <h1>logo</h1>
+            <div className="logo">
+                <img src={logo} alt="pizza"/>
             </div>
             <div>
                 <Link to='/cart'>

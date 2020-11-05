@@ -3,7 +3,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px;
-  height: 85px;
-  margin-top: 30px;
+  padding: 10px 40px;
+
+  .logo {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+  }
 }
