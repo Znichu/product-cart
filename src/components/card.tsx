@@ -4,13 +4,13 @@ import {useDispatch} from "react-redux";
 import {actions} from "../store/cart-reducer";
 
 type PropsType = {
-    title: string
+    name: string
     imgUrl: string
     price: number
     id: number
 }
 
-export const Card: React.FC<PropsType> = ({title, imgUrl, price, id}) => {
+export const Card: React.FC<PropsType> = ({name, imgUrl, price, id}) => {
 
     const dispatch = useDispatch();
 
@@ -18,8 +18,9 @@ export const Card: React.FC<PropsType> = ({title, imgUrl, price, id}) => {
         let obj = {
             item: {
                 id,
-                name: title,
-                price
+                name,
+                price,
+                imgUrl
             },
             quantity: 1
         }
@@ -28,15 +29,15 @@ export const Card: React.FC<PropsType> = ({title, imgUrl, price, id}) => {
 
     return (
         <div className="shop-card">
-            <div className="title">
-                {title}
-            </div>
             <figure>
-                <img src={imgUrl} alt={title}/>
+                <img src={imgUrl} alt={name}/>
             </figure>
+            <div className="title">
+                <h4>{name}</h4>
+            </div>
             <div className="cta">
                 <div className="price">{convertMoney(price)}</div>
-                <button onClick={addPizzaCart} className="btn">Add to cart</button>
+                <button onClick={addPizzaCart} className="btn">+ Добавить</button>
             </div>
         </div>
     )

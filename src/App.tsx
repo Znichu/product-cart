@@ -5,6 +5,8 @@ import {useDispatch} from "react-redux";
 import {actions} from "./store/products-reducer";
 import {ProductItemType} from "./types";
 import firebase from "./firebase";
+import {Route, Switch} from 'react-router-dom';
+import {Cart} from "./pages/cart";
 
 
 function App() {
@@ -25,7 +27,10 @@ function App() {
         <div className="wrapper">
             <Header/>
             <div className="content">
-                <ProductPage/>
+                <Switch>
+                    <Route exact path="/" render={() => <ProductPage/>}/>
+                    <Route exact path="/cart" render={() => <Cart/>}/>
+                </Switch>
             </div>
         </div>
     );

@@ -7,25 +7,10 @@ let initialState = {
     totalPrise: 0,
 };
 
-// const getTotalPrice = (arr) => arr.reduce((sum, obj) => obj.price + sum, 0);
-//
-// const _get = (obj, path) => {
-//     const [firstKey, ...keys] = path.split('.');
-//     return keys.reduce((val, key) => {
-//         return val[key];
-//     }, obj[firstKey]);
-// };
-//
-// const getTotalSum = (obj, path) => {
-//     return Object.values(obj).reduce((sum, obj) => {
-//         const value = _get(obj, path);
-//         return sum + value;
-//     }, 0);
-// };
 
-export const sumItems = (cartItems: ItemCartType[]) => {
-    let itemCount = cartItems.reduce((total, product) => total + product.quantity, 0);
-    let totalPrise = Number(cartItems.reduce((total, product) => total + product.item.price * product.quantity, 0).toFixed(2));
+const sumItems = (items: ItemCartType[]) => {
+    let itemCount = items.reduce((total, product) => product.quantity + total, 0);
+    let totalPrise = Number(items.reduce((total, product) => total + product.item.price * product.quantity, 0).toFixed(2));
     return {itemCount, totalPrise}
 }
 
@@ -33,9 +18,8 @@ export const sumItems = (cartItems: ItemCartType[]) => {
 export const CartReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case "ADD_PIZZA_CART": {
-            let existed_item = !!state.items.find(i => action.id === i.item.id)
-            debugger
-            if (existed_item) {
+            const existedItem = !!state.items.find(i => action.id === i.item.id);
+            if (existedItem) {
                 return {
                     ...state,
                     items: state.items.map(i => {
@@ -47,12 +31,15 @@ export const CartReducer = (state: InitialStateType = initialState, action: Acti
                         } else {
                             return i
                         }
-                    })
+                    }),
+                    ...sumItems(state.items)
                 }
             } else {
+                const currentCart = [...state.items, action.item];
                 return {
                     ...state,
-                    items: [...state.items, action.item]
+                    items: [...state.items, action.item],
+                    ...sumItems(currentCart)
                 }
             }
         }
