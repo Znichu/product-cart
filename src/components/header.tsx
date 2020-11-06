@@ -13,7 +13,9 @@ export const Header = () => {
     return (
         <div className="header-container">
             <div className="logo">
+                <Link to="/">
                 <img src={logo} alt="pizza"/>
+                </Link>
             </div>
             <div>
                 <Link to='/cart'>
