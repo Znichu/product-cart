@@ -108,6 +108,7 @@ export const Cart = () => {
                                                      name={i.item.name}
                                                      totalCount={i.quantity}
                                                      imgUrl={i.item.imgUrl}
+                                                     price={i.item.price}
                                                      key={i.item.id}
                                                      minusCartItem={minusCartItem}
                                                      plusCartItem={plusCartItem}

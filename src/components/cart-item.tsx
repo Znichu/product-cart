@@ -1,16 +1,18 @@
 import React from "react";
+import {convertMoney} from "../helpers/format-money";
 
 type PropsType = {
     id: number
     name: string
     totalCount: number
     imgUrl: string
+    price: number
     plusCartItem: (id: number) => void
     minusCartItem: (id: number) => void
     removeCartItem: (id: number) => void
 }
 
-export const CartItem: React.FC<PropsType> = ({ id, name, totalCount, imgUrl, plusCartItem, minusCartItem, removeCartItem}) => {
+export const CartItem: React.FC<PropsType> = ({ id, name, totalCount, price, imgUrl, plusCartItem, minusCartItem, removeCartItem}) => {
 
     const handleRemoveClick = () => {
         removeCartItem(id)
@@ -72,6 +74,9 @@ export const CartItem: React.FC<PropsType> = ({ id, name, totalCount, imgUrl, pl
                         />
                     </svg>
                 </div>
+            </div>
+            <div className="cart__item-price">
+                <b>{convertMoney(price)}</b>
             </div>
             <div className="cart__item-remove">
                 <button onClick={handleRemoveClick} className="button button--circle button--outline" >
